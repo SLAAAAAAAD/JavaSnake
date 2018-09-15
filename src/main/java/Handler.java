@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Handler {
     ArrayList<GameObject> objects = new ArrayList<>();
+    private Camera camera = new Camera(0,0);
 
     public void tick() {
         for (int i = 0; i < objects.size(); i++) {
@@ -10,6 +11,7 @@ public class Handler {
 
             tempObject.tick();
         }
+        camera.tick();
     }
 
     public void render(Graphics g) {
