@@ -34,14 +34,14 @@ public class Player extends GameObject {
     }
 
     private void addTail() {
-        tail.add(new Tail(ID.TERRAIN, xPos, yPos, 3, 3, handler));
+        tail.add(new Tail(ID.TERRAIN, xPos, yPos, 0, 0, handler));
     }
 
     public void tick() {
         handleKeyInput();
         super.tick();
         addTail();
-        if(tail.size() > length){
+        if (tail.size() > length) {
             tail.remove(0);
         }
         for (int i = 0; i < tail.size(); i++) {
@@ -49,17 +49,21 @@ public class Player extends GameObject {
 
             tempObject.tick();
         }
+        System.out.println(xPos + ", " + yPos);
     }
 
     public void render(Graphics g) {
         super.render(g);
         g.setColor(Color.black);
         g.fillOval((int) xRender, (int) yRender, xSize, ySize);
-        for (int i = 0; i < tail.size() - 5; i++) {
+        for (Tail t : tail) {
+            t.render(g);
+        }
+        for (int i = 0; i < tail.size() - 1; i++) {
             GameObject tailOne = tail.get(i);
             GameObject tailTwo = tail.get(i + 1);
 
-            g.drawLine((int)tailOne.xPos, (int)tailOne.yPos, (int)tailTwo.xPos, (int)tailTwo.yPos);
+            g.drawLine((int) tailOne.xRender, (int) tailOne.yRender, (int) tailTwo.xRender, (int) tailTwo.yRender);
         }
     }
 }

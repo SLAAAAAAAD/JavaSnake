@@ -44,8 +44,8 @@ public abstract class GameObject {
     }
 
     public void render(Graphics g) {
-        xRender = (int)(xPos - (double)xSize / 2);
-        yRender = (int)(yPos - (double)ySize / 2);
+        xRender = (int)(xPos - (double)xSize / 2 - handler.getCamera().getX());
+        yRender = (int)(yPos - (double)ySize / 2 - handler.getCamera().getY());
 
     }
 

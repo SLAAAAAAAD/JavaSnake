@@ -18,14 +18,6 @@ public class Camera {
         System.out.println((int)xPos + ", " + (int)yPos);
     }
 
-    public double correctX(double x){
-        return 0;
-    }
-
-    public double correctY(double y){
-        return 0;
-    }
-
     public double getX() {
         return xPos;
     }
