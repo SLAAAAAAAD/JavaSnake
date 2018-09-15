@@ -15,7 +15,6 @@ public class Camera {
     public void tick() {
         xPos = target.getxPos() - width / 2;
         yPos = target.getyPos() - height / 2;
-        System.out.println((int)xPos + ", " + (int)yPos);
     }
 
     public double getX() {

@@ -49,7 +49,6 @@ public class Player extends GameObject {
 
             tempObject.tick();
         }
-        System.out.println(xPos + ", " + yPos);
     }
 
     public void render(Graphics g) {
