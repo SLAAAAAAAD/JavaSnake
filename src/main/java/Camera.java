@@ -2,18 +2,29 @@ public class Camera {
     private double xPos;
     private double yPos;
 
+    private int width;
+    private int height;
+
     private GameObject target;
 
-    public Camera(double xPos, double yPos) {
-        this.xPos = xPos;
-        this.yPos = yPos;
+    public Camera(int width, int height) {
+        this.width = width;
+        this.height = height;
     }
 
     public void tick() {
-        xPos = target.getxPos();
-        yPos = target.getyPos();
+        xPos = target.getxPos() - width / 2;
+        yPos = target.getyPos() - height / 2;
+        System.out.println((int)xPos + ", " + (int)yPos);
     }
 
+    public double correctX(double x){
+        return 0;
+    }
+
+    public double correctY(double y){
+        return 0;
+    }
 
     public double getX() {
         return xPos;

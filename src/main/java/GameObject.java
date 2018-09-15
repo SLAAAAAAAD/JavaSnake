@@ -25,8 +25,6 @@ public abstract class GameObject {
     }
 
     public void tick() {
-        xRender = (int)(xPos - (double)xSize / 2);
-        yRender = (int)(yPos - (double)ySize / 2);
         if (!fixed) {
             if (id == ID.PLAYER || id == ID.ENEMY) {
                 double totalSpeed = (double) Math.sqrt((xSpeed * xSpeed) + (ySpeed * ySpeed));
@@ -46,6 +44,9 @@ public abstract class GameObject {
     }
 
     public void render(Graphics g) {
+        xRender = (int)(xPos - (double)xSize / 2);
+        yRender = (int)(yPos - (double)ySize / 2);
+
     }
 
 

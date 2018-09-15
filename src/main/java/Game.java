@@ -7,12 +7,14 @@ public class Game extends Canvas implements Runnable {
     private boolean running = false;
 
     private Handler handler;
+    private Camera camera;
 
     public static int width = 800;
     public static int height = 800;
 
     public Game() {
-        handler = new Handler();
+        camera = new Camera(width, height);
+        handler = new Handler(camera);
         this.setSize(width, height);
         this.addKeyListener(new KeyInput(handler));
         Window window = new Window(width, height, "Game", this);
@@ -24,7 +26,9 @@ public class Game extends Canvas implements Runnable {
         thread.start();
         running = true;
         int playerSize = 7;
-        handler.addObject(new Player(ID.PLAYER, width / 2, height / 2, playerSize, playerSize, handler));
+        Player player = new Player(ID.PLAYER, width / 2, height / 2, playerSize, playerSize, handler);
+        handler.addObject(player);
+        handler.getCamera().setTarget(player);
     }
 
     public synchronized void stop() {
