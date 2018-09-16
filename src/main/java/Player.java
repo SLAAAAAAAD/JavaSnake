@@ -55,9 +55,7 @@ public class Player extends GameObject {
         super.render(g);
         g.setColor(Color.black);
         g.fillOval((int) xRender, (int) yRender, xSize, ySize);
-        for (Tail t : tail) {
-            t.render(g);
-        }
+
         for (int i = 0; i < tail.size() - 1; i++) {
             GameObject tailOne = tail.get(i);
             GameObject tailTwo = tail.get(i + 1);
