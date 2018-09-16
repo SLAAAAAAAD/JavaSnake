@@ -1,21 +1,22 @@
+import geometrical_components.Point;
+
 import java.awt.*;
 
 public abstract class GameObject {
     protected int xRender, yRender, xSize, ySize;
     protected ID id;
     protected boolean fixed;
-    protected double minSpeed, maxSpeed, xSpeed, ySpeed, xPos, yPos;
+    protected double minSpeed, maxSpeed;
+    protected Point speed, pos;
 
     protected Handler handler;
 
-    public GameObject(ID id, double xPos, double yPos, int xSize, int ySize, Handler handler) {
+    public GameObject(ID id, Point pos, int xSize, int ySize, Handler handler) {
         this.id = id;
-        this.xPos = xPos;
-        this.yPos = yPos;
+        this.pos = pos;
+        this.speed = new Point(0, 0);
         this.xSize = xSize;
         this.ySize = ySize;
-        xSpeed = 0;
-        ySpeed = 0;
         minSpeed = 1.5;
         maxSpeed = 6;
         this.handler = handler;
@@ -27,59 +28,42 @@ public abstract class GameObject {
     public void tick() {
         if (!fixed) {
             if (id == ID.PLAYER || id == ID.ENEMY) {
-                double totalSpeed = (double) Math.sqrt((xSpeed * xSpeed) + (ySpeed * ySpeed));
+                double totalSpeed = Math.hypot(speed.getX(), speed.getY());
                 if (totalSpeed > maxSpeed) {
                     double ratio = maxSpeed / totalSpeed;
-                    xSpeed *= ratio;
-                    ySpeed *= ratio;
+                    speed.setX(speed.getX() * ratio);
+                    speed.setY(speed.getY() * ratio);
                 } else if (totalSpeed < minSpeed) {
                     double ratio = minSpeed / totalSpeed;
-                    xSpeed *= ratio;
-                    ySpeed *= ratio;
+                    speed.setX(speed.getX() * ratio);
+                    speed.setY(speed.getY() * ratio);
                 }
-                xPos += xSpeed;
-                yPos += ySpeed;
+                pos.vectorAdd(speed);
             }
         }
     }
 
     public void render(Graphics g) {
-        xRender = (int)(xPos - (double)xSize / 2 - handler.getCamera().getX());
-        yRender = (int)(yPos - (double)ySize / 2 - handler.getCamera().getY());
+        xRender = (int) (pos.getX() - (double) xSize / 2 - handler.getCamera().getPos().getX());
+        yRender = (int) (pos.getY() - (double) ySize / 2 - handler.getCamera().getPos().getY());
 
     }
 
 
-    public double getxPos() {
-        return xPos;
+    public Point getSpeed() {
+        return speed;
     }
 
-    public void setxPos(int xPos) {
-        this.xPos = xPos;
+    public void setSpeed(Point speed) {
+        this.speed = speed;
     }
 
-    public double getyPos() {
-        return yPos;
+    public Point getPos() {
+        return pos;
     }
 
-    public void setyPos(int yPos) {
-        this.yPos = yPos;
-    }
-
-    public double getxSpeed() {
-        return xSpeed;
-    }
-
-    public void setxSpeed(int xSpeed) {
-        this.xSpeed = xSpeed;
-    }
-
-    public double getySpeed() {
-        return ySpeed;
-    }
-
-    public void setySpeed(int ySpeed) {
-        this.ySpeed = ySpeed;
+    public void setPos(Point pos) {
+        this.pos = pos;
     }
 
     public int getxSize() {
@@ -104,6 +88,14 @@ public abstract class GameObject {
 
     public void setMaxSpeed(int maxSpeed) {
         this.maxSpeed = maxSpeed;
+    }
+
+    public double getMinSpeed() {
+        return minSpeed;
+    }
+
+    public void setMinSpeed(double minSpeed) {
+        this.minSpeed = minSpeed;
     }
 
     public Handler getHandler() {
