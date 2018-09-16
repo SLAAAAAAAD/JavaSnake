@@ -5,20 +5,21 @@ public class Camera {
     private int width;
     private int height;
 
-
     private double snap;
+    private double lead;
 
     private GameObject target;
 
-    public Camera(int width, int height, double snap) {
+    public Camera(int width, int height, double snap, double lead) {
         this.width = width;
         this.height = height;
         this.snap = snap;
+        this.lead = lead;
     }
 
     public void tick() {
-        double x = target.getxPos() - width / 2;
-        double y = target.getyPos() - height / 2;
+        double x = target.getxPos() - width / 2 + target.getxSpeed() * lead;
+        double y = target.getyPos() - height / 2 + target.getySpeed() * lead;
         xPos = FuzzyMath.percentCloser(xPos, x, snap);
         yPos = FuzzyMath.percentCloser(yPos, y, snap);
     }
@@ -53,5 +54,13 @@ public class Camera {
 
     public void setsnap(double snap) {
         this.snap = snap;
+    }
+
+    public double getLead() {
+        return lead;
+    }
+
+    public void setLead(double lead) {
+        this.lead = lead;
     }
 }

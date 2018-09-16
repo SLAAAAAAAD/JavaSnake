@@ -13,7 +13,7 @@ public class Game extends Canvas implements Runnable {
     public static int height = 800;
 
     public Game() {
-        camera = new Camera(width, height, 0.05);
+        camera = new Camera(width, height, 0.04, 50);
         handler = new Handler(camera);
         this.setSize(width, height);
         this.addKeyListener(new KeyInput(handler));
