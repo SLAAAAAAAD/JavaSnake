@@ -1,4 +1,4 @@
-public final class FuzzyMath{
+public class FuzzyMath{
     private FuzzyMath() {
     }
 
