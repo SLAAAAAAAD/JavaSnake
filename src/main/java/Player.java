@@ -1,18 +1,18 @@
-import geometrical_components.Point;
+import geometrical_components.Vector;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class Player extends GameObject {
+public class Player extends DynamicObject {
 
     private ArrayList<Tail> tail = new ArrayList<>();
     private int length = 400;
 
-    public Player(ID id, Point pos, int xSize, int ySize, Handler handler) {
+    public Player(ID id, Vector pos, int xSize, int ySize, Handler handler) {
         super(id, pos, xSize, ySize, handler);
-        speed = new Point((float) Math.random() - 1, (float) Math.random() - 1);
+        speed = new Vector((float) Math.random() - 1, (float) Math.random() - 1);
     }
 
     private void handleKeyInput() {
@@ -35,7 +35,7 @@ public class Player extends GameObject {
     }
 
     private void addTail() {
-        tail.add(new Tail(ID.TERRAIN, new Point(pos.getX(), pos.getY()), 0, 0, handler));
+        tail.add(new Tail(ID.TERRAIN, new Vector(pos.getX(), pos.getY()), 0, 0, handler));
     }
 
     public void tick() {
@@ -46,7 +46,7 @@ public class Player extends GameObject {
             tail.remove(0);
         }
         for (int i = 0; i < tail.size(); i++) {
-            GameObject tempObject = tail.get(i);
+            DynamicObject tempObject = tail.get(i);
 
             tempObject.tick();
         }
@@ -60,8 +60,8 @@ public class Player extends GameObject {
             t.render(g);
         }
         for (int i = 0; i < tail.size() - 1; i++) {
-            GameObject tailOne = tail.get(i);
-            GameObject tailTwo = tail.get(i + 1);
+            DynamicObject tailOne = tail.get(i);
+            DynamicObject tailTwo = tail.get(i + 1);
 
             g.drawLine((int) tailOne.xRender, (int) tailOne.yRender, (int) tailTwo.xRender, (int) tailTwo.yRender);
         }

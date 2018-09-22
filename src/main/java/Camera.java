@@ -1,7 +1,7 @@
-import geometrical_components.Point;
+import geometrical_components.Vector;
 
 public class Camera {
-    private Point pos;
+    private Vector pos;
 
     private int width;
     private int height;
@@ -9,14 +9,14 @@ public class Camera {
     private double snap;
     private double lead;
 
-    private GameObject target;
+    private DynamicObject target;
 
     public Camera(int width, int height, double snap, double lead) {
         this.width = width;
         this.height = height;
         this.snap = snap;
         this.lead = lead;
-        pos = new Point(0,0);
+        pos = new Vector(0,0);
     }
 
     public void tick() {
@@ -27,19 +27,19 @@ public class Camera {
         pos.setY(FuzzyMath.percentCloser(pos.getY(), y, snap));
     }
 
-    public Point getPos() {
+    public Vector getPos() {
         return pos;
     }
 
-    public void setPos(Point pos) {
+    public void setPos(Vector pos) {
         this.pos = pos;
     }
 
-    public GameObject getTarget() {
+    public DynamicObject getTarget() {
         return target;
     }
 
-    public void setTarget(GameObject target) {
+    public void setTarget(DynamicObject target) {
         this.target = target;
     }
 

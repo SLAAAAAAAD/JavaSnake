@@ -1,10 +1,10 @@
 package geometrical_components;
 
-public class Point {
+public class Vector {
     private double x;
     private double y;
 
-    public Point(double x, double y){
+    public Vector(double x, double y){
         this.x = x;
         this.y = y;
     }
@@ -14,7 +14,7 @@ public class Point {
         this.y = y;
     }
 
-    public void vectorAdd(Point p){
+    public void vectorAdd(Vector p){
         x += p.getX();
         y += p.getY();
     }

@@ -1,6 +1,4 @@
-import geometrical_components.Line;
-import geometrical_components.Point;
-import geometrical_components.Line;
+import geometrical_components.Vector;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -30,7 +28,7 @@ public class Game extends Canvas implements Runnable {
         thread.start();
         running = true;
         int playerSize = 7;
-        Player player = new Player(ID.PLAYER, new Point(width / 2, height / 2), playerSize, playerSize, handler);
+        Player player = new Player(ID.PLAYER, new Vector(width / 2, height / 2), playerSize, playerSize, handler);
         handler.addObject(player);
         handler.getCamera().setTarget(player);
     }

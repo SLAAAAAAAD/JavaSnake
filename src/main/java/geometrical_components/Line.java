@@ -1,21 +1,21 @@
 package geometrical_components;
 
 public class Line {
-    private Point p1;
-    private Point p2;
+    private Vector p1;
+    private Vector p2;
 
-    public Line(Point p1, Point p2) {
+    public Line(Vector p1, Vector p2) {
         this.p1 = p1;
         this.p2 = p2;
     }
 
-    public void setPoints(Point p1, Point p2) {
+    public void setPoints(Vector p1, Vector p2) {
         this.p1 = p1;
         this.p2 = p2;
     }
 
-    public Point getMidpoint(){
-        return new Point((p1.getX() + p2.getX()) / 2, (p1.getY() + p2.getY()) / 2);
+    public Vector getMidpoint(){
+        return new Vector((p1.getX() + p2.getX()) / 2, (p1.getY() + p2.getY()) / 2);
     }
 
     public double getlength(){
@@ -27,19 +27,19 @@ public class Line {
 
     }
 
-    public Point getP1() {
+    public Vector getP1() {
         return p1;
     }
 
-    public void setP1(Point p1) {
+    public void setP1(Vector p1) {
         this.p1 = p1;
     }
 
-    public Point getP2() {
+    public Vector getP2() {
         return p2;
     }
 
-    public void setP2(Point p2) {
+    public void setP2(Vector p2) {
         this.p2 = p2;
     }
 }
