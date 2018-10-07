@@ -1,4 +1,4 @@
-import geometrical_components.Vector;
+import geometrical_components.Point;
 
 import java.awt.*;
 
@@ -6,14 +6,14 @@ public abstract class DynamicObject extends GameObject {
     protected int xRender, yRender, xSize, ySize;
     protected boolean fixed;
     protected double minSpeed, maxSpeed;
-    protected Vector speed, pos;
+    protected Point speed, pos;
 
     protected Handler handler;
 
-    public DynamicObject(ID id, Vector pos, int xSize, int ySize, Handler handler) {
+    public DynamicObject(ID id, Point pos, int xSize, int ySize, Handler handler) {
         super(id);
         this.pos = pos;
-        this.speed = new Vector(0, 0);
+        this.speed = new Point(0, 0);
         this.xSize = xSize;
         this.ySize = ySize;
         minSpeed = 1.5;
@@ -48,19 +48,19 @@ public abstract class DynamicObject extends GameObject {
     }
 
 
-    public Vector getSpeed() {
+    public Point getSpeed() {
         return speed;
     }
 
-    public void setSpeed(Vector speed) {
+    public void setSpeed(Point speed) {
         this.speed = speed;
     }
 
-    public Vector getPos() {
+    public Point getPos() {
         return pos;
     }
 
-    public void setPos(Vector pos) {
+    public void setPos(Point pos) {
         this.pos = pos;
     }
 

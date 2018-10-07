@@ -1,4 +1,4 @@
-import geometrical_components.Vector;
+import geometrical_components.Point;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -9,10 +9,11 @@ public class Player extends DynamicObject {
 
     private ArrayList<Tail> tail = new ArrayList<>();
     private int length = 400;
+    private double accel = 0.2;
 
-    public Player(ID id, Vector pos, int xSize, int ySize, Handler handler) {
+    public Player(ID id, Point pos, int xSize, int ySize, Handler handler) {
         super(id, pos, xSize, ySize, handler);
-        speed = new Vector((float) Math.random() - 1, (float) Math.random() - 1);
+        speed = new Point((float) Math.random() - 1, (float) Math.random() - 1);
     }
 
     private void handleKeyInput() {
@@ -20,22 +21,22 @@ public class Player extends DynamicObject {
             Map<Integer, Boolean> keyMap = KeyInput.keyPressMap;
 
             if (keyMap.get(KeyEvent.VK_LEFT)) {
-                speed.translateX(-0.2);
+                speed.translateX(0 - accel);
             }
             if (keyMap.get(KeyEvent.VK_RIGHT)) {
-                speed.translateX(0.2);
+                speed.translateX(accel);
             }
             if (keyMap.get(KeyEvent.VK_UP)) {
-                speed.translateY(-0.2);
+                speed.translateY(0 - accel);
             }
             if (keyMap.get(KeyEvent.VK_DOWN)) {
-                speed.translateY(0.2);
+                speed.translateY(accel);
             }
         }
     }
 
     private void addTail() {
-        tail.add(new Tail(ID.TERRAIN, new Vector(pos.getX(), pos.getY()), 0, 0, handler));
+        tail.add(new Tail(ID.TERRAIN, new Point(pos.getX(), pos.getY()), handler));
     }
 
     public void tick() {

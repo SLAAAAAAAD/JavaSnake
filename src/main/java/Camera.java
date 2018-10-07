@@ -1,7 +1,7 @@
-import geometrical_components.Vector;
+import geometrical_components.Point;
 
 public class Camera {
-    private Vector pos;
+    private Point pos;
 
     private int width;
     private int height;
@@ -16,7 +16,7 @@ public class Camera {
         this.height = height;
         this.snap = snap;
         this.lead = lead;
-        pos = new Vector(0,0);
+        pos = new Point(0,0);
     }
 
     public void tick() {
@@ -27,11 +27,11 @@ public class Camera {
         pos.setY(FuzzyMath.percentCloser(pos.getY(), y, snap));
     }
 
-    public Vector getPos() {
+    public Point getPos() {
         return pos;
     }
 
-    public void setPos(Vector pos) {
+    public void setPos(Point pos) {
         this.pos = pos;
     }
 
