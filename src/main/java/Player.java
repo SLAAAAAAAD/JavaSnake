@@ -1,3 +1,4 @@
+import geometrical_components.Line;
 import geometrical_components.Point;
 
 import java.awt.*;
@@ -8,8 +9,10 @@ import java.util.Map;
 public class Player extends DynamicObject {
 
     private ArrayList<Tail> tail = new ArrayList<>();
-    private int length = 400;
+    private int length = 800;
     private double accel = 0.2;
+
+    boolean temp;
 
     public Player(ID id, Point pos, int xSize, int ySize, Handler handler) {
         super(id, pos, xSize, ySize, handler);
@@ -40,31 +43,61 @@ public class Player extends DynamicObject {
     }
 
     public void tick() {
+
+        temp = false;
+
         handleKeyInput();
         super.tick();
         addTail();
         if (tail.size() > length) {
             tail.remove(0);
         }
+
+        Line newestTailSegment = null;
+
+        if (tail.size() > 2) {
+            newestTailSegment = new Line(tail.get(tail.size() - 1).getPos(), tail.get(tail.size() - 2).getPos());
+        }
+
         for (int i = 0; i < tail.size(); i++) {
             DynamicObject tempObject = tail.get(i);
 
             tempObject.tick();
+
+            if (i < tail.size() - 2) {
+
+                Line currentTailSegment = new Line(tail.get(i).getPos(), tail.get(i + 1).getPos());
+
+                Point intersect = FuzzyMath.lineIntersect(currentTailSegment, newestTailSegment);
+
+                if (intersect != null) {
+                    System.out.println("X");
+                    temp = true;
+
+                }
+            }
         }
     }
 
     public void render(Graphics g) {
         super.render(g);
         g.setColor(Color.black);
-        g.fillOval((int) xRender, (int) yRender, xSize, ySize);
+//        g.fillOval((int) xRender, (int) yRender, xSize, ySize);
         for (Tail t : tail) {
             t.render(g);
         }
+
+        if (temp){
+            g.setColor(Color.red);
+            g.fillRect(0, 0, 800, 800);
+        }
+
         for (int i = 0; i < tail.size() - 1; i++) {
             DynamicObject tailOne = tail.get(i);
             DynamicObject tailTwo = tail.get(i + 1);
 
             g.drawLine((int) tailOne.xRender, (int) tailOne.yRender, (int) tailTwo.xRender, (int) tailTwo.yRender);
+//            g.fillRect((int) tailOne.xRender, (int) tailOne.yRender, 1, 1);
         }
     }
 }

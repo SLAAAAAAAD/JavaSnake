@@ -27,6 +27,14 @@ public class Line {
 
     }
 
+    public double getYIntercept() {
+        return p1.getY() - getSlope() * p1.getX();
+    }
+
+    public double getXIntercept() {
+        return p1.getX() - p1.getY() / getSlope();
+    }
+
     public Point getP1() {
         return p1;
     }
