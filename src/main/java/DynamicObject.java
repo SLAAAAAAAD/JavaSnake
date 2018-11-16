@@ -16,8 +16,8 @@ public abstract class DynamicObject extends GameObject {
         this.speed = new Point(0, 0);
         this.xSize = xSize;
         this.ySize = ySize;
-        minSpeed = 1.5;
-        maxSpeed = 6;
+        minSpeed = 1;
+        maxSpeed = 2;
         this.handler = handler;
         if (id == ID.TERRAIN) {
             fixed = true;

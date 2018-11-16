@@ -49,8 +49,8 @@ public class FuzzyMath {
 //        double newCx = (((Cx - Ax) * (Bx - Ax) - (Cy - Ay) * (By - Ay)) * R) / ((Bx - Ax) * (Bx - Ax) + (By - Ay) * (By - Ay));
 //        double newDx = (((Dx - Ax) * (Bx - Ax) - (Dy - Ay) * (By - Ay)) * R) / ((Bx - Ax) * (Bx - Ax) + (By - Ay) * (By - Ay));
 
-        double newCx = ((Cx - Ax) * (Bx - Ax) + (Cy - Ay) * (By - Ay)) / R;
-        double newDx = ((Dx - Ax) * (Bx - Ax) + (Dy - Ay) * (By - Ay)) / R;
+        double newCx = ((Cx - Ax) * (Bx - Ax) - (Cy - Ay) * (By - Ay)) / R;
+        double newDx = ((Dx - Ax) * (Bx - Ax) - (Dy - Ay) * (By - Ay)) / R;
 
         Line newLine = new Line(new Point(newCx, newCy), new Point(newDx, newDy));
 
