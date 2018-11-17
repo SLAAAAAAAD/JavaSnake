@@ -39,8 +39,8 @@ public class FuzzyMath {
 
         double R = L1.getlength();
 
-        double newCy = ((Cx - Ax) * (By - Ay) + (Cy - Ay) * (Bx - Ax)) / R;
-        double newDy = ((Dx - Ax) * (By - Ay) + (Dy - Ay) * (Bx - Ax)) / R;
+        double newCy = ((Cx - Ax) * (By - Ay) - (Cy - Ay) * (Bx - Ax)) / R;
+        double newDy = ((Dx - Ax) * (By - Ay) - (Dy - Ay) * (Bx - Ax)) / R;
 
         if (newCy * newDy > 0) {
             return null;
@@ -49,8 +49,8 @@ public class FuzzyMath {
 //        double newCx = (((Cx - Ax) * (Bx - Ax) - (Cy - Ay) * (By - Ay)) * R) / ((Bx - Ax) * (Bx - Ax) + (By - Ay) * (By - Ay));
 //        double newDx = (((Dx - Ax) * (Bx - Ax) - (Dy - Ay) * (By - Ay)) * R) / ((Bx - Ax) * (Bx - Ax) + (By - Ay) * (By - Ay));
 
-        double newCx = ((Cx - Ax) * (Bx - Ax) - (Cy - Ay) * (By - Ay)) / R;
-        double newDx = ((Dx - Ax) * (Bx - Ax) - (Dy - Ay) * (By - Ay)) / R;
+        double newCx = ((Cx - Ax) * (Bx - Ax) + (Cy - Ay) * (By - Ay)) / R;
+        double newDx = ((Dx - Ax) * (Bx - Ax) + (Dy - Ay) * (By - Ay)) / R;
 
         Line newLine = new Line(new Point(newCx, newCy), new Point(newDx, newDy));
 

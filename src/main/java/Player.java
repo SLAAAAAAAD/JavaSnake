@@ -64,7 +64,7 @@ public class Player extends DynamicObject {
 
             tempObject.tick();
 
-            if (i < tail.size() - 2) {
+            if (i < tail.size() - 3) {
 
                 Line currentTailSegment = new Line(tail.get(i).getPos(), tail.get(i + 1).getPos());
 
