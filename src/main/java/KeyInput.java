@@ -24,7 +24,7 @@ public class KeyInput extends KeyAdapter {
         keyPressMap.put(e.getKeyCode(), true);
 //        int key = e.getKeyCode();
 //        for (int i = 0; i < handler.objects.size(); i++) {
-//            GameObject tempObject = handler.objects.get(i);
+//            DynamicObject tempObject = handler.objects.get(i);
 //            if (tempObject.getId() == ID.PLAYER) {
 //                if (key == KeyEvent.VK_UP) {
 //                    keyPressMap.put(key, true);
@@ -47,7 +47,7 @@ public class KeyInput extends KeyAdapter {
         keyPressMap.put(e.getKeyCode(), false);
 //        int key = e.getKeyCode();
 //        for (int i = 0; i < handler.objects.size(); i++) {
-//            GameObject tempObject = handler.objects.get(i);
+//            DynamicObject tempObject = handler.objects.get(i);
 //            if (tempObject.getId() == ID.PLAYER) {
 //                if (key == KeyEvent.VK_UP) tempObject.setyMomentum(0.0);
 //                if (key == KeyEvent.VK_DOWN) tempObject.setyMomentum(0.0);

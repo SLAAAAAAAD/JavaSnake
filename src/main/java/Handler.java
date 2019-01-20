@@ -2,7 +2,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Handler {
-    ArrayList<GameObject> objects = new ArrayList<>();
+    ArrayList<DynamicObject> objects = new ArrayList<>();
     private Camera camera;
 
     public Handler(Camera camera){
@@ -11,7 +11,7 @@ public class Handler {
 
     public void tick() {
         for (int i = 0; i < objects.size(); i++) {
-            GameObject tempObject = objects.get(i);
+            DynamicObject tempObject = objects.get(i);
 
             tempObject.tick();
         }
@@ -22,7 +22,7 @@ public class Handler {
         g.setColor(Color.white);
         g.fillRect(0, 0, 800, 800);
         for (int i = 0; i < objects.size(); i++) {
-            GameObject tempObject = objects.get(i);
+            DynamicObject tempObject = objects.get(i);
 
             tempObject.render(g);
         }
@@ -32,11 +32,11 @@ public class Handler {
         return camera;
     }
 
-    public void addObject(GameObject object) {
+    public void addObject(DynamicObject object) {
         objects.add(object);
     }
 
-    public void removeObject(GameObject object) {
+    public void removeObject(DynamicObject object) {
         objects.remove(object);
     }
 }

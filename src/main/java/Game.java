@@ -1,3 +1,5 @@
+import geometrical_components.Point;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
@@ -26,7 +28,7 @@ public class Game extends Canvas implements Runnable {
         thread.start();
         running = true;
         int playerSize = 7;
-        Player player = new Player(ID.PLAYER, width / 2, height / 2, playerSize, playerSize, handler);
+        Player player = new Player(ID.PLAYER, new Point(width / 2, height / 2), playerSize, playerSize, handler);
         handler.addObject(player);
         handler.getCamera().setTarget(player);
     }
@@ -74,7 +76,7 @@ public class Game extends Canvas implements Runnable {
     private void render() {
         BufferStrategy bs = this.getBufferStrategy();
         if (bs == null) {
-            this.createBufferStrategy(3);
+            this.createBufferStrategy(10);
             return;
         }
 

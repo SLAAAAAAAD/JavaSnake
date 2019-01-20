@@ -1,4 +1,6 @@
-import java.awt.geom.Area;
+import geometrical_components.*;
+
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {

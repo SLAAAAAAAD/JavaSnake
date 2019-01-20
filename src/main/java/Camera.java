@@ -1,6 +1,7 @@
+import geometrical_components.Point;
+
 public class Camera {
-    private double xPos;
-    private double yPos;
+    private Point pos;
 
     private int width;
     private int height;
@@ -8,43 +9,37 @@ public class Camera {
     private double snap;
     private double lead;
 
-    private GameObject target;
+    private DynamicObject target;
 
     public Camera(int width, int height, double snap, double lead) {
         this.width = width;
         this.height = height;
         this.snap = snap;
         this.lead = lead;
+        pos = new Point(0,0);
     }
 
     public void tick() {
-        double x = target.getxPos() - width / 2 + target.getxSpeed() * lead;
-        double y = target.getyPos() - height / 2 + target.getySpeed() * lead;
-        xPos = FuzzyMath.percentCloser(xPos, x, snap);
-        yPos = FuzzyMath.percentCloser(yPos, y, snap);
+
+        double x = target.getPos().getX() - target.getxSize() / 2 - width / 2 + target.getSpeed().getX() * lead;
+        double y = target.getPos().getY() - target.getySize() / 2 - width / 2 + target.getSpeed().getY() * lead;
+        pos.setX(FuzzyMath.percentCloser(pos.getX(), x, snap));
+        pos.setY(FuzzyMath.percentCloser(pos.getY(), y, snap));
     }
 
-    public double getX() {
-        return xPos;
+    public Point getPos() {
+        return pos;
     }
 
-    public void setX(double xPos) {
-        this.xPos = xPos;
+    public void setPos(Point pos) {
+        this.pos = pos;
     }
 
-    public double getY() {
-        return yPos;
-    }
-
-    public void setY(double yPos) {
-        this.yPos = yPos;
-    }
-
-    public GameObject getTarget() {
+    public DynamicObject getTarget() {
         return target;
     }
 
-    public void setTarget(GameObject target) {
+    public void setTarget(DynamicObject target) {
         this.target = target;
     }
 

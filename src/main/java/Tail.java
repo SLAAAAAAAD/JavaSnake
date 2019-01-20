@@ -1,11 +1,10 @@
+import geometrical_components.Point;
 import java.awt.*;
 
-public class Tail extends GameObject {
+public class Tail extends DynamicObject {
 
-    private Color color = Color.black;
-
-    public Tail(ID id, double xPos, double yPos, int xSize, int ySize, Handler handler) {
-        super(id, xPos, yPos, xSize, ySize, handler);
+    public Tail(ID id, Point pos, Handler handler) {
+        super(id, pos, 0, 0, handler);
     }
 
     public void tick() {
