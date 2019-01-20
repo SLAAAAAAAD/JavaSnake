@@ -1,3 +1,4 @@
+import geometrical_components.GeoMath;
 import geometrical_components.Line;
 import geometrical_components.Point;
 
@@ -10,7 +11,8 @@ public class Player extends DynamicObject {
 
     private ArrayList<Tail> tail = new ArrayList<>();
     private int length = 800;
-    private double accel = 0.2;
+    private double accel = 0.25;
+    private Color color = Color.black;
 
     boolean temp;
 
@@ -68,12 +70,11 @@ public class Player extends DynamicObject {
 
                 Line currentTailSegment = new Line(tail.get(i).getPos(), tail.get(i + 1).getPos());
 
-                Point intersect = FuzzyMath.lineIntersect(currentTailSegment, newestTailSegment);
+                Point intersect = GeoMath.lineIntersect(currentTailSegment, newestTailSegment);
 
                 if (intersect != null) {
                     System.out.println("X");
                     temp = true;
-
                 }
             }
         }
@@ -81,15 +82,10 @@ public class Player extends DynamicObject {
 
     public void render(Graphics g) {
         super.render(g);
-        g.setColor(Color.black);
+        g.setColor(color);
 //        g.fillOval((int) xRender, (int) yRender, xSize, ySize);
         for (Tail t : tail) {
             t.render(g);
-        }
-
-        if (temp){
-            g.setColor(Color.red);
-            g.fillRect(0, 0, 800, 800);
         }
 
         for (int i = 0; i < tail.size() - 1; i++) {
@@ -97,7 +93,12 @@ public class Player extends DynamicObject {
             DynamicObject tailTwo = tail.get(i + 1);
 
             g.drawLine((int) tailOne.xRender, (int) tailOne.yRender, (int) tailTwo.xRender, (int) tailTwo.yRender);
-//            g.fillRect((int) tailOne.xRender, (int) tailOne.yRender, 1, 1);
+//            g.fillRect((int) tailOne.xRender, (int) tailOne.yRender, 3, 3);
+        }
+
+        if (temp){
+            g.setColor(Color.RED);
+            g.fillRect(0,0,800,800);
         }
     }
 }

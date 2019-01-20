@@ -14,17 +14,21 @@ public class Line {
         this.p2 = p2;
     }
 
-    public Point getMidpoint(){
+    public Point getMidpoint() {
         return new Point((p1.getX() + p2.getX()) / 2, (p1.getY() + p2.getY()) / 2);
     }
 
-    public double getlength(){
-        return Math.hypot(p1.getX() - p2.getX(), p1.getY() - p2.getY());
+    public double getlength() {
+        return p2.getRfrom(p1);
     }
 
-    public double getSlope(){
-        return (p2.getY() - p1.getY()) / (p2.getX() - p1.getX());
+    public double getSlope() {
+        Point temp = p2.getUCPfrom(p1);
+        return temp.getY() / temp.getX();
+    }
 
+    public double getAngle() {
+        return p2.getTfrom(p1);
     }
 
     public double getYIntercept() {
