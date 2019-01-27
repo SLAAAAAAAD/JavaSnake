@@ -17,4 +17,5 @@ public class GeoMathTest {
         Assert.assertTrue(GeoMath.lineIntersect(AB, BC) != null);
     }
 
+
 }

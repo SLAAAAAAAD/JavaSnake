@@ -9,19 +9,18 @@ public abstract class DynamicObject extends GameObject {
 
     protected Handler handler;
 
-    public DynamicObject(ID id, Point pos, int xSize, int ySize, Handler handler) {
-        super(id);
+    public DynamicObject(Point pos, int xSize, int ySize, Handler handler) {
+        super();
         this.pos = pos;
         this.speed = new Point(0, 0);
         this.xSize = xSize;
         this.ySize = ySize;
-        minSpeed = 3;
-        maxSpeed = 6;
+        minSpeed = 1;
+        maxSpeed = 4;
         this.handler = handler;
     }
 
     public void tick() {
-        if (id == ID.PLAYER || id == ID.ENEMY) {
             double totalSpeed = Math.hypot(speed.getX(), speed.getY());
             if (totalSpeed > maxSpeed) {
                 double ratio = maxSpeed / totalSpeed;
@@ -33,7 +32,6 @@ public abstract class DynamicObject extends GameObject {
                 speed.setY(speed.getY() * ratio);
             }
             pos.add(speed);
-        }
     }
 
     public void render(Graphics g) {

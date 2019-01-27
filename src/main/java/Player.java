@@ -11,13 +11,13 @@ public class Player extends DynamicObject {
 
     private ArrayList<Tail> tail = new ArrayList<>();
     private int length = 800;
-    private double accel = .2;
+    private double accel = .5;
     private Color color = Color.black;
 
     boolean temp;
 
-    public Player(ID id, Point pos, int xSize, int ySize, Handler handler) {
-        super(id, pos, xSize, ySize, handler);
+    public Player(Point pos, int xSize, int ySize, Handler handler) {
+        super(pos, xSize, ySize, handler);
         speed = new Point((float) Math.random() - 1, (float) Math.random() - 1);
     }
 
@@ -41,7 +41,7 @@ public class Player extends DynamicObject {
     }
 
     private void addTail() {
-        tail.add(new Tail(ID.TERRAIN, new Point(pos.getX(), pos.getY()), handler));
+        tail.add(new Tail(new Point(pos.getX(), pos.getY()), handler));
     }
 
     public void tick() {
