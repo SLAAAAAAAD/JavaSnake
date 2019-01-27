@@ -11,7 +11,7 @@ public class Player extends DynamicObject {
 
     private ArrayList<Tail> tail = new ArrayList<>();
     private int length = 800;
-    private double accel = 0.25;
+    private double accel = .2;
     private Color color = Color.black;
 
     boolean temp;

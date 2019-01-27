@@ -8,11 +8,7 @@ public class GameObject {
         this.id = id;
     }
 
-    public void tick(){
-
-    }
-
-    public void render(Graphics g){
+    public void render(Graphics g) {
 
     }
 

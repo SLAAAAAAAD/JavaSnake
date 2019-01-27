@@ -4,7 +4,6 @@ import java.awt.*;
 
 public abstract class DynamicObject extends GameObject {
     protected int xRender, yRender, xSize, ySize;
-    protected boolean fixed;
     protected double minSpeed, maxSpeed;
     protected Point speed, pos;
 
@@ -16,29 +15,24 @@ public abstract class DynamicObject extends GameObject {
         this.speed = new Point(0, 0);
         this.xSize = xSize;
         this.ySize = ySize;
-        minSpeed = .5;
-        maxSpeed = 2.5;
+        minSpeed = 3;
+        maxSpeed = 6;
         this.handler = handler;
-        if (id == ID.TERRAIN) {
-            fixed = true;
-        }
     }
 
     public void tick() {
-        if (!fixed) {
-            if (id == ID.PLAYER || id == ID.ENEMY) {
-                double totalSpeed = Math.hypot(speed.getX(), speed.getY());
-                if (totalSpeed > maxSpeed) {
-                    double ratio = maxSpeed / totalSpeed;
-                    speed.setX(speed.getX() * ratio);
-                    speed.setY(speed.getY() * ratio);
-                } else if (totalSpeed < minSpeed) {
-                    double ratio = minSpeed / totalSpeed;
-                    speed.setX(speed.getX() * ratio);
-                    speed.setY(speed.getY() * ratio);
-                }
-                pos.add(speed);
+        if (id == ID.PLAYER || id == ID.ENEMY) {
+            double totalSpeed = Math.hypot(speed.getX(), speed.getY());
+            if (totalSpeed > maxSpeed) {
+                double ratio = maxSpeed / totalSpeed;
+                speed.setX(speed.getX() * ratio);
+                speed.setY(speed.getY() * ratio);
+            } else if (totalSpeed < minSpeed) {
+                double ratio = minSpeed / totalSpeed;
+                speed.setX(speed.getX() * ratio);
+                speed.setY(speed.getY() * ratio);
             }
+            pos.add(speed);
         }
     }
 
@@ -70,14 +64,6 @@ public abstract class DynamicObject extends GameObject {
 
     public void setxSize(int xSize) {
         this.xSize = xSize;
-    }
-
-    public boolean isFixed() {
-        return fixed;
-    }
-
-    public void setFixed(boolean fixed) {
-        this.fixed = fixed;
     }
 
     public double getMaxSpeed() {
@@ -116,16 +102,8 @@ public abstract class DynamicObject extends GameObject {
         return xRender;
     }
 
-    public void setxRender(int xRender) {
-        this.xRender = xRender;
-    }
-
     public int getyRender() {
         return yRender;
-    }
-
-    public void setyRender(int yRender) {
-        this.yRender = yRender;
     }
 
 }
