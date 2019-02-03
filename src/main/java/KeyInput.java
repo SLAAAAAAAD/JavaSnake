@@ -15,45 +15,17 @@ public class KeyInput extends KeyAdapter {
         this.keyPressMap.put(KeyEvent.VK_DOWN, false);
         this.keyPressMap.put(KeyEvent.VK_LEFT, false);
         this.keyPressMap.put(KeyEvent.VK_RIGHT, false);
+        this.keyPressMap.put(KeyEvent.VK_HOME, false);
+        this.keyPressMap.put(KeyEvent.VK_PAGE_UP, false);
+        this.keyPressMap.put(KeyEvent.VK_END, false);
+        this.keyPressMap.put(KeyEvent.VK_PAGE_DOWN, false);
     }
-
-    // define a map of keyids and preseed/released booleans
-
 
     public void keyPressed(KeyEvent e) {
         keyPressMap.put(e.getKeyCode(), true);
-//        int key = e.getKeyCode();
-//        for (int i = 0; i < handler.objects.size(); i++) {
-//            DynamicObject tempObject = handler.objects.get(i);
-//            if (tempObject.getId() == ID.PLAYER) {
-//                if (key == KeyEvent.VK_UP) {
-//                    keyPressMap.put(key, true);
-////                    tempObject.setyMomentum(-1.0);
-//                }
-//                if (key == KeyEvent.VK_DOWN) {
-//                    tempObject.setyMomentum(1.0);
-//                }
-//                if (key == KeyEvent.VK_LEFT) {
-//                    tempObject.setxMomentum(-1.0);
-//                }
-//                if (key == KeyEvent.VK_RIGHT) {
-//                    tempObject.setxMomentum(1.0);
-//                }
-//            }
-//        }
     }
 
     public void keyReleased(KeyEvent e) {
         keyPressMap.put(e.getKeyCode(), false);
-//        int key = e.getKeyCode();
-//        for (int i = 0; i < handler.objects.size(); i++) {
-//            DynamicObject tempObject = handler.objects.get(i);
-//            if (tempObject.getId() == ID.PLAYER) {
-//                if (key == KeyEvent.VK_UP) tempObject.setyMomentum(0.0);
-//                if (key == KeyEvent.VK_DOWN) tempObject.setyMomentum(0.0);
-//                if (key == KeyEvent.VK_LEFT) tempObject.setxMomentum(0.0);
-//                if (key == KeyEvent.VK_RIGHT) tempObject.setxMomentum(0.0);
-//            }
-//        }
     }
 }

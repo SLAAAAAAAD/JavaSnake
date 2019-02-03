@@ -56,6 +56,8 @@ public class Point {
         return Math.atan2(y, x);
     }
 
+    // UCP stands for Unit Circle Point
+    // the point on the unit circle that shares the same theta as the given point.
     public Point getUCP() {
         return new Point(x / getR(), y / getR());
     }

@@ -4,42 +4,22 @@ import java.awt.*;
 
 public abstract class DynamicObject extends GameObject {
     protected int xRender, yRender, xSize, ySize;
-    protected boolean fixed;
-    protected double minSpeed, maxSpeed;
+
     protected Point speed, pos;
 
     protected Handler handler;
 
-    public DynamicObject(ID id, Point pos, int xSize, int ySize, Handler handler) {
-        super(id);
+    public DynamicObject(Point pos, int xSize, int ySize, Handler handler) {
+        super();
         this.pos = pos;
         this.speed = new Point(0, 0);
         this.xSize = xSize;
         this.ySize = ySize;
-        minSpeed = .5;
-        maxSpeed = 2.5;
         this.handler = handler;
-        if (id == ID.TERRAIN) {
-            fixed = true;
-        }
     }
 
     public void tick() {
-        if (!fixed) {
-            if (id == ID.PLAYER || id == ID.ENEMY) {
-                double totalSpeed = Math.hypot(speed.getX(), speed.getY());
-                if (totalSpeed > maxSpeed) {
-                    double ratio = maxSpeed / totalSpeed;
-                    speed.setX(speed.getX() * ratio);
-                    speed.setY(speed.getY() * ratio);
-                } else if (totalSpeed < minSpeed) {
-                    double ratio = minSpeed / totalSpeed;
-                    speed.setX(speed.getX() * ratio);
-                    speed.setY(speed.getY() * ratio);
-                }
-                pos.add(speed);
-            }
-        }
+
     }
 
     public void render(Graphics g) {
@@ -72,30 +52,6 @@ public abstract class DynamicObject extends GameObject {
         this.xSize = xSize;
     }
 
-    public boolean isFixed() {
-        return fixed;
-    }
-
-    public void setFixed(boolean fixed) {
-        this.fixed = fixed;
-    }
-
-    public double getMaxSpeed() {
-        return maxSpeed;
-    }
-
-    public void setMaxSpeed(int maxSpeed) {
-        this.maxSpeed = maxSpeed;
-    }
-
-    public double getMinSpeed() {
-        return minSpeed;
-    }
-
-    public void setMinSpeed(double minSpeed) {
-        this.minSpeed = minSpeed;
-    }
-
     public Handler getHandler() {
         return handler;
     }
@@ -116,16 +72,8 @@ public abstract class DynamicObject extends GameObject {
         return xRender;
     }
 
-    public void setxRender(int xRender) {
-        this.xRender = xRender;
-    }
-
     public int getyRender() {
         return yRender;
-    }
-
-    public void setyRender(int yRender) {
-        this.yRender = yRender;
     }
 
 }

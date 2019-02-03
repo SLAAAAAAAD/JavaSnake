@@ -22,7 +22,7 @@ public class Handler {
         g.setColor(Color.white);
         g.fillRect(0, 0, 800, 800);
         for (int i = 0; i < objects.size(); i++) {
-            DynamicObject tempObject = objects.get(i);
+            GameObject tempObject = objects.get(i);
 
             tempObject.render(g);
         }
