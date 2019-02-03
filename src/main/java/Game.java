@@ -27,8 +27,7 @@ public class Game extends Canvas implements Runnable {
         thread = new Thread(this);
         thread.start();
         running = true;
-        int playerSize = 7;
-        Player player = new Player(new Point(width / 2, height / 2), playerSize, playerSize, handler);
+        PlayerSnake player = new PlayerSnake(new Point(width / 2, height / 2), handler);
         handler.addObject(player);
         handler.getCamera().setTarget(player);
     }

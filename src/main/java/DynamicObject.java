@@ -4,7 +4,7 @@ import java.awt.*;
 
 public abstract class DynamicObject extends GameObject {
     protected int xRender, yRender, xSize, ySize;
-    protected double minSpeed, maxSpeed;
+
     protected Point speed, pos;
 
     protected Handler handler;
@@ -15,23 +15,11 @@ public abstract class DynamicObject extends GameObject {
         this.speed = new Point(0, 0);
         this.xSize = xSize;
         this.ySize = ySize;
-        minSpeed = 1;
-        maxSpeed = 4;
         this.handler = handler;
     }
 
     public void tick() {
-            double totalSpeed = Math.hypot(speed.getX(), speed.getY());
-            if (totalSpeed > maxSpeed) {
-                double ratio = maxSpeed / totalSpeed;
-                speed.setX(speed.getX() * ratio);
-                speed.setY(speed.getY() * ratio);
-            } else if (totalSpeed < minSpeed) {
-                double ratio = minSpeed / totalSpeed;
-                speed.setX(speed.getX() * ratio);
-                speed.setY(speed.getY() * ratio);
-            }
-            pos.add(speed);
+
     }
 
     public void render(Graphics g) {
@@ -62,22 +50,6 @@ public abstract class DynamicObject extends GameObject {
 
     public void setxSize(int xSize) {
         this.xSize = xSize;
-    }
-
-    public double getMaxSpeed() {
-        return maxSpeed;
-    }
-
-    public void setMaxSpeed(int maxSpeed) {
-        this.maxSpeed = maxSpeed;
-    }
-
-    public double getMinSpeed() {
-        return minSpeed;
-    }
-
-    public void setMinSpeed(double minSpeed) {
-        this.minSpeed = minSpeed;
     }
 
     public Handler getHandler() {

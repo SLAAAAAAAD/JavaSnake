@@ -6,8 +6,6 @@ public class GeoMath {
 
     public static boolean rangeIntersect(double a, double b, double c, double d) {
         return (Math.min(a,b) <= Math.max(c,d) && Math.min(c,d) <= Math.max(a,b));
-
-//        return (a <= d && c <= b);
     }
 
     public static Point addPoints(Point p1, Point p2) {
@@ -42,9 +40,9 @@ public class GeoMath {
 
         double x = 0 - ((b1 - b2) / (m1 - m2));
 
-//        if (!rangeIntersect(A.getX(), B.getX(), x, x) || !rangeIntersect(C.getX(), D.getX(), x, x)) {
-//            return null;
-//        }
+        if (!rangeIntersect(A.getX(), B.getX(), x, x) || !rangeIntersect(C.getX(), D.getX(), x, x)) {
+            return null;
+        }
 
         double y = (m1 * x) + b1;
 
