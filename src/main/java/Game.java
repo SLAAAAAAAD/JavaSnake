@@ -2,6 +2,7 @@ import geometrical_components.Point;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 
 public class Game extends Canvas implements Runnable {
 
@@ -28,7 +29,10 @@ public class Game extends Canvas implements Runnable {
         thread.start();
         running = true;
         PlayerSnake player = new PlayerSnake(new Point(width / 2, height / 2), handler);
-        AISnake badguy = new AISnake(new Point(width/3, height/3), handler);
+        ArrayList<AISnake> baddies = new ArrayList<>();
+        for (int i = 1; i < 5; i++) {
+            baddies.add(new AISnake(new Point(width / 3 + i * 10, height / 3 - i * 10), handler));
+        }
         handler.getCamera().setTarget(player);
     }
 

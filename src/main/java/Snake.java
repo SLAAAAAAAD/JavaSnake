@@ -27,17 +27,20 @@ public class Snake extends DynamicObject {
         handleMovement();
         addTail();
         for (int i = 0; i < tail.size(); i++) {
-            DynamicObject tempObject = tail.get(i);
+            Tail tempObject = tail.get(i);
 
             tempObject.tick();
         }
-        handleCollision();
+        Point p = handleCollision();
+        if (p != null) {
+            dead = true;
+        }
     }
 
     public void render(Graphics g) {
         super.render(g);
         g.setColor(color);
-        for (Tail t : tail) {
+        for (DynamicObject t : tail) {
             t.render(g);
         }
 
@@ -70,29 +73,35 @@ public class Snake extends DynamicObject {
         }
     }
 
-    private void handleCollision() {
-//        selfCollisionDetection();
-//        otherCollisionDetection();
+    private Point handleCollision() {
+        Point self = selfCollisionDetection();
+        if (self != null) {
+            return self;
+        }
+        Point other = otherCollisionDetection();
+        return other;
     }
 
-//    private void selfCollisionDetection() {
-//        for (int i = 0; i < tail.size(); i++) {
-//            DynamicObject tempObject = tail.get(i);
-//
-//            if (i < tail.size() - 3) {
-//
-//                Line currentTailSegment = new Line(tail.get(i).getPos(), tail.get(i + 1).getPos());
-//
-//                Point intersect = GeoMath.lineIntersect(currentTailSegment, getHead());
-//
-//                if (intersect != null) {
-//                    die(intersect);
-//                }
-//            }
-//        }
-//    }
-//
-//    private void otherCollisionDetection() {
+    private Point selfCollisionDetection() {
+        for (int i = 0; i < tail.size(); i++) {
+            DynamicObject tempObject = tail.get(i);
+
+            if (i < tail.size() - 3) {
+
+                Line currentTailSegment = new Line(tail.get(i).getPos(), tail.get(i + 1).getPos());
+
+                Point intersect = GeoMath.lineIntersect(currentTailSegment, getHead());
+
+                if (intersect != null) {
+                    return intersect;
+                }
+            }
+        }
+        return null;
+    }
+
+    //
+    private Point otherCollisionDetection() {
 //        for (int i = 0; i < handler.getObjects().size(); i++) {
 //            DynamicObject temp = handler.getObjects().get(i);
 //            if (temp != this) {
@@ -102,7 +111,20 @@ public class Snake extends DynamicObject {
 //                }
 //            }
 //        }
-//    }
+        ArrayList<DynamicObject> objects = handler.getObjects();
+        for (int i = 0; i < objects.size() - 1; i++) {
+            if (objects.get(i) != this) {
+                ArrayList<Line> collidables = objects.get(i).getCollidables();
+                for (int j = 0; j < collidables.size() - 1; j++) {
+                    Point intersect = GeoMath.lineIntersect(collidables.get(j), getHead());
+                    if (intersect != null) {
+                        return intersect;
+                    }
+                }
+            }
+        }
+        return null;
+    }
 //
 //    public Point checkCollision(Line line) {
 //        Point collisionPoint = null;
@@ -121,11 +143,6 @@ public class Snake extends DynamicObject {
 //        }
 //        return collisionPoint;
 //    }
-
-    private void die(Point p) {
-        tail = new ArrayList<>();
-        System.out.println('X');
-    }
 
     public double getMaxSpeed() {
         return maxSpeed;
@@ -151,7 +168,11 @@ public class Snake extends DynamicObject {
         }
     }
 
-    public ArrayList<DynamicObject> getCollidables(){
-        return
+    public ArrayList<Line> getCollidables() {
+        ArrayList<Line> lines = new ArrayList<>();
+        for (int i = 0; i < tail.size() - 2; i++) {
+            lines.add(new Line(tail.get(i).getPos(), tail.get(i + 1).getPos()));
+        }
+        return lines;
     }
 }

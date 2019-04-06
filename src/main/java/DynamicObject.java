@@ -11,6 +11,8 @@ public abstract class DynamicObject extends GameObject {
 
     protected Handler handler;
 
+    protected boolean dead = false;
+
     public DynamicObject(Point pos, int xSize, int ySize, Handler handler) {
         super();
         this.pos = pos;
@@ -82,7 +84,15 @@ public abstract class DynamicObject extends GameObject {
         return yRender;
     }
 
-    public ArrayList<DynamicObject> getCollidables() {
+    public ArrayList<Line> getCollidables() {
         return null;
+    }
+
+    public boolean isDead() {
+        return dead;
+    }
+
+    public void setDead(boolean isdead) {
+        this.dead = dead;
     }
 }

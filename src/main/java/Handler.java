@@ -12,6 +12,12 @@ public class Handler {
     public void tick() {
         objects.forEach(obj -> obj.tick());
 
+        for (int i = 0; i < objects.size(); i++) {
+            if (objects.get(i).isDead()) {
+                objects.remove(i);
+            }
+        }
+
         camera.tick();
     }
 
