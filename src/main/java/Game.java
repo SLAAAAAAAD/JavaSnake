@@ -30,8 +30,8 @@ public class Game extends Canvas implements Runnable {
         running = true;
         PlayerSnake player = new PlayerSnake(new Point(width / 2, height / 2), handler);
         ArrayList<AISnake> baddies = new ArrayList<>();
-        for (int i = 1; i < 5; i++) {
-            baddies.add(new AISnake(new Point(width / 3 + i * 10, height / 3 - i * 10), handler));
+        for (int i = 0; i < 1; i++) {
+            baddies.add(new AISnake(new Point(width / 3, height / 3), handler));
         }
         handler.getCamera().setTarget(player);
     }

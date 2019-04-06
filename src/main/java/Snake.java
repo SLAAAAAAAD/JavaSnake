@@ -10,7 +10,7 @@ import java.util.Map;
 public class Snake extends DynamicObject {
 
     private ArrayList<Tail> tail = new ArrayList<>();
-    private int length = 800;
+    private int length = 200;
     protected double accel = .3;
     private double minSpeed, maxSpeed;
     protected Color color = Color.black;
@@ -100,19 +100,9 @@ public class Snake extends DynamicObject {
         return null;
     }
 
-    //
     private Point otherCollisionDetection() {
-//        for (int i = 0; i < handler.getObjects().size(); i++) {
-//            DynamicObject temp = handler.getObjects().get(i);
-//            if (temp != this) {
-//                Point p = temp.checkCollision(getHead());
-//                if (p != null) {
-//                    die(p);
-//                }
-//            }
-//        }
         ArrayList<DynamicObject> objects = handler.getObjects();
-        for (int i = 0; i < objects.size() - 1; i++) {
+        for (int i = 0; i < objects.size(); i++) {
             if (objects.get(i) != this) {
                 ArrayList<Line> collidables = objects.get(i).getCollidables();
                 for (int j = 0; j < collidables.size() - 1; j++) {
@@ -125,25 +115,7 @@ public class Snake extends DynamicObject {
         }
         return null;
     }
-//
-//    public Point checkCollision(Line line) {
-//        Point collisionPoint = null;
-//        if (getHead() != null) {
-//            for (int i = 0; i < tail.size(); i++) {
-//                DynamicObject tempObject = tail.get(i);
-//                if (i < tail.size() - 2) {
-//                    Line currentTailSegment = new Line(tail.get(i).getPos(), tail.get(i + 1).getPos());
-//
-//                    Point p = GeoMath.lineIntersect(currentTailSegment, line);
-//                    if (p != null) {
-//                        collisionPoint = p;
-//                    }
-//                }
-//            }
-//        }
-//        return collisionPoint;
-//    }
-
+    
     public double getMaxSpeed() {
         return maxSpeed;
     }
