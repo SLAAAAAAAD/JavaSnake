@@ -1,6 +1,8 @@
+import geometrical_components.Line;
 import geometrical_components.Point;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public abstract class DynamicObject extends GameObject {
     protected int xRender, yRender, xSize, ySize;
@@ -25,6 +27,10 @@ public abstract class DynamicObject extends GameObject {
     public void render(Graphics g) {
         xRender = (int) (pos.getX() - (double) xSize / 2 - handler.getCamera().getPos().getX());
         yRender = (int) (pos.getY() - (double) ySize / 2 - handler.getCamera().getPos().getY());
+    }
+
+    public Point checkCollision(Line line) {
+        return null;
     }
 
 
@@ -76,4 +82,7 @@ public abstract class DynamicObject extends GameObject {
         return yRender;
     }
 
+    public ArrayList<DynamicObject> getCollidables() {
+        return null;
+    }
 }

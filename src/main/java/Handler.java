@@ -2,19 +2,16 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Handler {
-    ArrayList<DynamicObject> objects = new ArrayList<>();
+    private ArrayList<DynamicObject> objects = new ArrayList<>();
     private Camera camera;
 
-    public Handler(Camera camera){
+    public Handler(Camera camera) {
         this.camera = camera;
     }
 
     public void tick() {
-        for (int i = 0; i < objects.size(); i++) {
-            DynamicObject tempObject = objects.get(i);
+        objects.forEach(obj -> obj.tick());
 
-            tempObject.tick();
-        }
         camera.tick();
     }
 
@@ -28,7 +25,7 @@ public class Handler {
         }
     }
 
-    public Camera getCamera(){
+    public Camera getCamera() {
         return camera;
     }
 
@@ -38,5 +35,9 @@ public class Handler {
 
     public void removeObject(DynamicObject object) {
         objects.remove(object);
+    }
+
+    public ArrayList<DynamicObject> getObjects() {
+        return objects;
     }
 }
