@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Snake extends DynamicObject {
 
-    private ArrayList<Tail> tail = new ArrayList<>();
+    protected ArrayList<Tail> tail = new ArrayList<>();
     private int length = 200;
     protected double accel = .3;
     private double minSpeed, maxSpeed;
@@ -115,7 +115,13 @@ public class Snake extends DynamicObject {
         }
         return null;
     }
-    
+
+    public void die() {
+        dead = false;
+        System.out.println("X");
+        tail = new ArrayList<>();
+    }
+
     public double getMaxSpeed() {
         return maxSpeed;
     }
@@ -146,5 +152,18 @@ public class Snake extends DynamicObject {
             lines.add(new Line(tail.get(i).getPos(), tail.get(i + 1).getPos()));
         }
         return lines;
+    }
+
+    public Point getCenter() {
+        if (tail.size() == 0){
+            return pos;
+        }
+        double xTotal = 0;
+        double yTotal = 0;
+        for (int i = 0; i < tail.size(); i++) {
+            xTotal += tail.get(i).getPos().getX();
+            yTotal += tail.get(i).getPos().getY();
+        }
+        return new Point(xTotal / tail.size(), yTotal / tail.size());
     }
 }

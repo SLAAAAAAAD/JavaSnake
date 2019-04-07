@@ -1,11 +1,15 @@
 package geometrical_components;
 
+import java.util.ArrayList;
+
 public class GeoMath {
     private GeoMath() {
     }
 
+    public static final Point ORIGIN = new Point(0, 0);
+
     public static boolean rangeIntersect(double a, double b, double c, double d) {
-        return (Math.min(a,b) <= Math.max(c,d) && Math.min(c,d) <= Math.max(a,b));
+        return (Math.min(a, b) <= Math.max(c, d) && Math.min(c, d) <= Math.max(a, b));
     }
 
     public static Point addPoints(Point p1, Point p2) {
@@ -21,31 +25,43 @@ public class GeoMath {
     }
 
     public static Point lineIntersect(Line L1, Line L2) {
-        Point A = L1.getP1();
-        Point B = L1.getP2();
-        Point C = L2.getP1();
-        Point D = L2.getP2();
+        try {
+            Point A = L1.getP1();
+            Point B = L1.getP2();
+            Point C = L2.getP1();
+            Point D = L2.getP2();
 
-        if (!rangeIntersect(A.getX(), B.getX(), C.getX(), D.getX())) {
+            if (!rangeIntersect(A.getX(), B.getX(), C.getX(), D.getX())) {
+                return null;
+            }
+            if (!rangeIntersect(A.getY(), B.getY(), C.getY(), D.getY())) {
+                return null;
+            }
+
+            double m1 = L1.getSlope();
+            double b1 = L1.getYIntercept();
+            double m2 = L2.getSlope();
+            double b2 = L2.getYIntercept();
+
+            double x = 0 - ((b1 - b2) / (m1 - m2));
+
+            if (!rangeIntersect(A.getX(), B.getX(), x, x) || !rangeIntersect(C.getX(), D.getX(), x, x)) {
+                return null;
+            }
+
+            double y = (m1 * x) + b1;
+
+            return new Point(x, y);
+        } catch (NullPointerException e) {
             return null;
         }
-        if (!rangeIntersect(A.getY(), B.getY(), C.getY(), D.getY())) {
-            return null;
+    }
+
+    public static Point totalVectorAdd(ArrayList<Point> points) {
+        Point p = ORIGIN;
+        for (int i = 0; i < points.size(); i++) {
+            p = GeoMath.addPoints(p, points.get(i));
         }
-
-        double m1 = L1.getSlope();
-        double b1 = L1.getYIntercept();
-        double m2 = L2.getSlope();
-        double b2 = L2.getYIntercept();
-
-        double x = 0 - ((b1 - b2) / (m1 - m2));
-
-        if (!rangeIntersect(A.getX(), B.getX(), x, x) || !rangeIntersect(C.getX(), D.getX(), x, x)) {
-            return null;
-        }
-
-        double y = (m1 * x) + b1;
-
-        return new Point(x, y);
+        return p;
     }
 }

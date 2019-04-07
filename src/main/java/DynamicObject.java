@@ -35,6 +35,10 @@ public abstract class DynamicObject extends GameObject {
         return null;
     }
 
+    public void die(){
+
+    }
+
 
     public Point getSpeed() {
         return speed;
@@ -94,5 +98,9 @@ public abstract class DynamicObject extends GameObject {
 
     public void setDead(boolean isdead) {
         this.dead = dead;
+    }
+
+    public Point getCenter(){
+        return pos;
     }
 }

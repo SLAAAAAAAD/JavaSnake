@@ -1,5 +1,7 @@
 package geometrical_components;
 
+import static java.lang.Double.NaN;
+
 public class Point {
     private double x;
     private double y;
@@ -75,5 +77,27 @@ public class Point {
     public Point getUCPfrom(Point p) {
         Point temp = GeoMath.subtractPoints(this, p);
         return temp.getUCP();
+    }
+
+    public Point getAttraction() {
+        if(getT() == 0){
+            return null;
+        }
+        double ratio = Math.pow(1 / getT(), 2);
+        return new Point(x * ratio, y * ratio);
+    }
+
+    public Point getAttractionFrom(Point p) {
+        Point temp = GeoMath.subtractPoints(this, p);
+        return temp.getAttraction();
+    }
+
+    public Point getOpposite() {
+        return new Point(0 - x, 0 - y);
+    }
+
+    public Point getOppositeFrom(Point p){
+        Point temp = GeoMath.subtractPoints(this, p);
+        return temp.getOpposite();
     }
 }
