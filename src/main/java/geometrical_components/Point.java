@@ -79,17 +79,17 @@ public class Point {
         return temp.getUCP();
     }
 
-    public Point getAttraction() {
-        if(getT() == 0){
+    public Point getAttraction(Double weight) {
+        if(getR() == 0){
             return null;
         }
-        double ratio = Math.pow(1 / getT(), 2);
+        double ratio = Math.pow(weight / getR(), 2);
         return new Point(x * ratio, y * ratio);
     }
 
-    public Point getAttractionFrom(Point p) {
+    public Point getAttractionFrom(Double weight, Point p) {
         Point temp = GeoMath.subtractPoints(this, p);
-        return temp.getAttraction();
+        return temp.getAttraction(weight);
     }
 
     public Point getOpposite() {

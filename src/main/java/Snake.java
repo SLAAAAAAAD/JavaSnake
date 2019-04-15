@@ -10,16 +10,16 @@ import java.util.Map;
 public class Snake extends DynamicObject {
 
     protected ArrayList<Tail> tail = new ArrayList<>();
-    private int length = 200;
-    protected double accel = .3;
+    protected int length = 200;
+    protected double accel = .5;
     private double minSpeed, maxSpeed;
     protected Color color = Color.black;
 
     public Snake(Point pos, Handler handler) {
         super(pos, 1, 1, handler);
         speed = new Point((float) Math.random() - 1, (float) Math.random() - 1);
-        minSpeed = 2;
-        maxSpeed = 4;
+        minSpeed = 1;
+        maxSpeed = 5;
         handler.addObject(this);
     }
 
@@ -155,7 +155,7 @@ public class Snake extends DynamicObject {
     }
 
     public Point getCenter() {
-        if (tail.size() == 0){
+        if (tail.size() == 0) {
             return pos;
         }
         double xTotal = 0;
