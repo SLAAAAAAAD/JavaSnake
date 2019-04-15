@@ -14,7 +14,7 @@ public class Handler {
 
         for (int i = 0; i < objects.size(); i++) {
             if (objects.get(i).isDead()) {
-                objects.remove(i);
+                objects.get(i).die();
             }
         }
 

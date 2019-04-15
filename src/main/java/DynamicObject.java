@@ -1,3 +1,4 @@
+import geometrical_components.GeoMath;
 import geometrical_components.Line;
 import geometrical_components.Point;
 
@@ -33,6 +34,10 @@ public abstract class DynamicObject extends GameObject {
 
     public Point checkCollision(Line line) {
         return null;
+    }
+
+    public void die(){
+
     }
 
 
@@ -94,5 +99,16 @@ public abstract class DynamicObject extends GameObject {
 
     public void setDead(boolean isdead) {
         this.dead = dead;
+    }
+
+    public Point getCenter(){
+        return pos;
+    }
+
+    public Point getLead(double frames) {
+        Point temp = new Point(speed.getX(), speed.getY());
+        temp.translateX(temp.getX() * frames);
+        temp.translateY(temp.getY() * frames);
+        return GeoMath.addPoints(pos, temp);
     }
 }

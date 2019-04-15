@@ -22,7 +22,7 @@ public class Camera {
     public void tick() {
 
         double x = target.getPos().getX() - target.getxSize() / 2 - width / 2 + target.getSpeed().getX() * lead;
-        double y = target.getPos().getY() - target.getySize() / 2 - width / 2 + target.getSpeed().getY() * lead;
+        double y = target.getPos().getY() - target.getySize() / 2 - height / 2 + target.getSpeed().getY() * lead;
         pos.setX(FuzzyMath.percentCloser(pos.getX(), x, snap));
         pos.setY(FuzzyMath.percentCloser(pos.getY(), y, snap));
     }
