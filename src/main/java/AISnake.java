@@ -7,18 +7,14 @@ import java.util.ArrayList;
 
 public class AISnake extends Snake {
 
-    private double aiTargetLead = 50
-            , aiTargetWeight = 1
-            , aiAvoidDistance = 50
-            , aiAvoidWeight = 100
-            , aiSelfAvoidDistance = 50
-            , aiSelfAvoidWeight = 100;
+    private double aiTargetLead = 50, aiTargetWeight = 1, aiAvoidDistance = 50, aiAvoidWeight = 100, aiSelfAvoidDistance = 50, aiSelfAvoidWeight = 100;
+    private Point attractorVector = new Point(0, 0);
 
     public AISnake(Point pos, Handler handler) {
         super(pos, handler);
         color = Color.red;
 //        accel = 10;
-//        setMinSpeed(0);
+//        setMinSpeed(10);
 //        setMaxSpeed(10);
     }
 
@@ -33,8 +29,6 @@ public class AISnake extends Snake {
             DynamicObject tempObj = handler.getObjects().get(i);
             if (tempObj != this) {
                 Point temp = tempObj.getLead(aiTargetLead);
-//                temp.setX(FuzzyMath.percentCloser(temp.getX(), pos.getX(), 0.5));
-//                temp.setY(FuzzyMath.percentCloser(temp.getY(), pos.getY(), 0.5));
                 attractors.add(temp.getAttractionFrom(aiTargetWeight, pos));
 
                 ArrayList<Line> tempAL = tempObj.getCollidables();
@@ -60,6 +54,8 @@ public class AISnake extends Snake {
 
 
         Point target = GeoMath.totalVectorAdd(attractors);
+        attractorVector = new Point(target.getX(), target.getY());
+        System.out.println(attractorVector.getX() + ", " + attractorVector.getY());
         double distance = Math.hypot(target.getX(), target.getY());
         target.setX(target.getX() * accel / distance);
         target.setY(target.getY() * accel / distance);
@@ -68,6 +64,14 @@ public class AISnake extends Snake {
     }
 
     public void render(Graphics g) {
+        try {
+            Point p1 = handler.getCamera().getRenderPoint(getHead().getMidpoint());
+            Point p2 = handler.getCamera().getRenderPoint(attractorVector);
+            g.setColor(Color.black);
+            g.drawLine((int) p1.getX(), (int) p1.getY(), (int) p2.getX(), (int) p2.getY());
+        } catch(NullPointerException e){
+
+        }
         super.render(g);
     }
 }

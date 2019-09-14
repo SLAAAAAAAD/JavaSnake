@@ -28,8 +28,8 @@ public abstract class DynamicObject extends GameObject {
     }
 
     public void render(Graphics g) {
-        xRender = (int) (pos.getX() - (double) xSize / 2 - handler.getCamera().getPos().getX());
-        yRender = (int) (pos.getY() - (double) ySize / 2 - handler.getCamera().getPos().getY());
+        xRender = handler.getCamera().getXRender(pos.getX() - (double) xSize / 2);
+        yRender = handler.getCamera().getYRender(pos.getY() - (double) ySize / 2);
     }
 
     public Point checkCollision(Line line) {
