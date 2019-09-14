@@ -34,6 +34,11 @@ public class Point {
         this.y += y;
     }
 
+    public void scale(double scalar) {
+        this.x *= scalar;
+        this.y *= scalar;
+    }
+
     public double getX() {
         return x;
     }

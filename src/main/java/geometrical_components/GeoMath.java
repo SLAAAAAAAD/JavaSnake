@@ -6,7 +6,9 @@ public class GeoMath {
     private GeoMath() {
     }
 
-    public static final Point ORIGIN = new Point(0, 0);
+    public static final Point origin() {
+        return new Point(0, 0);
+    }
 
     public static boolean rangeIntersect(double a, double b, double c, double d) {
         return (Math.min(a, b) <= Math.max(c, d) && Math.min(c, d) <= Math.max(a, b));
@@ -58,7 +60,7 @@ public class GeoMath {
     }
 
     public static Point totalVectorAdd(ArrayList<Point> points) {
-        Point p = ORIGIN;
+        Point p = origin();
         for (int i = 0; i < points.size(); i++) {
             p = GeoMath.addPoints(p, points.get(i));
         }
