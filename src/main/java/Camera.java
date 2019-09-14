@@ -16,7 +16,7 @@ public class Camera {
         this.height = height;
         this.snap = snap;
         this.lead = lead;
-        pos = new Point(0,0);
+        pos = new Point(0, 0);
     }
 
     public void tick() {
@@ -25,6 +25,18 @@ public class Camera {
         double y = target.getPos().getY() - target.getySize() / 2 - height / 2 + target.getSpeed().getY() * lead;
         pos.setX(FuzzyMath.percentCloser(pos.getX(), x, snap));
         pos.setY(FuzzyMath.percentCloser(pos.getY(), y, snap));
+    }
+
+    public Point getRenderPoint(Point p) {
+        return new Point(p.getX() - pos.getX(), p.getY() - pos.getY());
+    }
+
+    public int getXRender(double x) {
+        return (int) (x - pos.getX());
+    }
+
+    public int getYRender(double y) {
+        return (int) (y - pos.getY());
     }
 
     public Point getPos() {
