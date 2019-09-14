@@ -7,19 +7,11 @@ import java.util.ArrayList;
 
 public class AISnake extends Snake {
 
-    private double aiTargetLead = 50
-            , aiTargetWeight = 1
-            , aiAvoidDistance = 50
-            , aiAvoidWeight = 100
-            , aiSelfAvoidDistance = 50
-            , aiSelfAvoidWeight = 100;
+    private double aiTargetLead = 50, aiTargetWeight = 1, aiAvoidDistance = 50, aiAvoidWeight = 100, aiSelfAvoidDistance = 50, aiSelfAvoidWeight = 100;
 
     public AISnake(Point pos, Handler handler) {
         super(pos, handler);
         color = Color.red;
-//        accel = 10;
-//        setMinSpeed(0);
-//        setMaxSpeed(10);
     }
 
     public void tick() {
@@ -33,8 +25,6 @@ public class AISnake extends Snake {
             DynamicObject tempObj = handler.getObjects().get(i);
             if (tempObj != this) {
                 Point temp = tempObj.getLead(aiTargetLead);
-//                temp.setX(FuzzyMath.percentCloser(temp.getX(), pos.getX(), 0.5));
-//                temp.setY(FuzzyMath.percentCloser(temp.getY(), pos.getY(), 0.5));
                 attractors.add(temp.getAttractionFrom(aiTargetWeight, pos));
 
                 ArrayList<Line> tempAL = tempObj.getCollidables();

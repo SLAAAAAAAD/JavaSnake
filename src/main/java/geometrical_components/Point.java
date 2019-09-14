@@ -98,11 +98,11 @@ public class Point {
     }
 
     public Point getOpposite() {
-        return new Point(0 - x, 0 - y);
+        return new Point(0.0 - x, 0.0 - y);
     }
 
     public Point getOppositeFrom(Point p){
         Point temp = GeoMath.subtractPoints(this, p);
-        return temp.getOpposite();
+        return GeoMath.addPoints(temp.getOpposite(),p);
     }
 }
