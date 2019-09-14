@@ -39,7 +39,7 @@ public class AISnake extends Snake {
                 for (int j = 0; j < tempAL.size(); j++) {
                     Point temp2 = tempAL.get(j).getMidpoint();
                     Point upcFromHead = getLead(5).getUCPfrom(getHead().getMidpoint());
-                    upcFromHead.scale(aiAvoidDistance * 1.1);
+                    upcFromHead.scale(aiSelfAvoidDistance * 1.1);
                     upcFromHead.add(getHead().getMidpoint());
                     if (temp2.getRfrom(upcFromHead) < aiSelfAvoidDistance) {
                         attractors.add(temp2.getOppositeFrom(pos).getAttractionFrom(aiSelfAvoidWeight, pos));

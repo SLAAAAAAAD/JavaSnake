@@ -10,8 +10,8 @@ import java.util.Map;
 public class Snake extends DynamicObject {
 
     protected ArrayList<Tail> tail = new ArrayList<>();
-    protected int length = 200;
-    protected double accel = .5;
+    protected int length = 100;
+    protected double accel = .3;
     private double minSpeed, maxSpeed;
     protected Color color = Color.black;
 
@@ -118,7 +118,7 @@ public class Snake extends DynamicObject {
 
     public void die() {
         dead = false;
-        System.out.println("X");
+//        System.out.println("X");
         tail = new ArrayList<>();
     }
 
