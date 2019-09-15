@@ -9,3 +9,16 @@ NEW FEATURES:
     Power Ups! (how to implement? i dont know i'll figure it out!)
     Clans? Not sure what to call it, but put each object in a group such that objects of the same group dont try to kill eachother. (or in the case of applying buffs to eachother in the future (maybe?) so that objects dont try to buff objects of different groups)
     Title/Menu screens.
+
+
+
+Bruce's notes on how to change boot up process to allow for title and menu screens:
+
+CURRENT SETUP:
+    Main(Game(Window(Game)))
+INTERMEDIATE STEP:
+    Main(Game, Window(Game))
+END GOAL:
+    Main(Window(Screen(Game)))
+        Window renders Screen, which renders Game, swap out the game screen with a menu screen.
+            Use Gson (can get with maven dependency) to serialize/deserialize game objects to a save file when switching between game and menu screens.
