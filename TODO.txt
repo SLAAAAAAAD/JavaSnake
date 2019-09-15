@@ -1,0 +1,10 @@
+CODE CLEAN UP:
+    Stop modifying points by changing the X and Y values separately. Find all occurrences and change them to a method call on the Point class that modifies X Y instead
+
+REFACTOR:
+    Change AI such that instead of each enemy getting a list of collidables and then deciding whether to be attracted or repelled to each one, it should instead get a list of attractors and repellers from each object.
+
+NEW FEATURES:
+    Power Ups! (how to implement? i dont know i'll figure it out!)
+    Clans? Not sure what to call it, but put each object in a group such that objects of the same group dont try to kill eachother. (or in the case of applying buffs to eachother in the future (maybe?) so that objects dont try to buff objects of different groups)
+    Title/Menu screens
